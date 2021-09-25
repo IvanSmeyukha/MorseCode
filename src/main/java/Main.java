@@ -10,11 +10,11 @@ public class Main {
         System.out.println("Введите команду(code или decode). В качестве аргумента команде указано имя исходного текстового файла.");
         task = scanner.nextLine();
         if(task.lastIndexOf("decode") != -1) {
-            textFromFile = fileReader(task.toString().trim().substring(task.lastIndexOf("decode") + 7));
+            textFromFile = fileReader(task.trim().substring(task.lastIndexOf("decode") + 7));
             Processing.decode(textFromFile);
         }
         else if(task.lastIndexOf("code") != -1){
-            textFromFile = fileReader(task.toString().trim().substring(task.lastIndexOf("code") + 5));
+            textFromFile = fileReader(task.trim().substring(task.lastIndexOf("code") + 5));
             Processing.code(textFromFile);
         }
     }
@@ -23,7 +23,7 @@ public class Main {
         StringBuilder textFromFile = new StringBuilder();
         String line;
         BufferedReader bufferedReader = null;
-        FileReader fileReader = null;
+        FileReader fileReader;
         File file = new File(fileToOpen);
         try {
             fileReader = new FileReader(file);
@@ -35,10 +35,12 @@ public class Main {
             e.printStackTrace();
         }
         finally {
-            try {
-                bufferedReader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(null != bufferedReader){
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return textFromFile.toString();
