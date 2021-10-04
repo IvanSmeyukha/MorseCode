@@ -1,48 +1,24 @@
-
 import java.io.*;
-import java.util.TreeMap;
+import java.util.HashMap;
+import java.util.Scanner;
 
 public class MorseCode {
-    private TreeMap<Character, String> morseCode = new TreeMap<>();
 
-    public MorseCode() {
-        readMorseCode();
-    }
+    static String fileToRead = "morseCode.csv";
 
-    private void readMorseCode() {
-        BufferedReader bufferedReader = null;
-        FileReader fileReader;
-        File file = new File("D:/MorseCode.txt");
-        String line;
-        try {
-            fileReader = new FileReader(file);
-            bufferedReader = new BufferedReader(fileReader);
-            while ((line = bufferedReader.readLine()) != null) {
-                String code;
-                if(line.indexOf('.') == -1)
-                    code = line.substring(line.indexOf('-'));
-                else if(line.indexOf('-') == -1)
-                    code = line.substring(line.indexOf('.'));
-                else if(line.indexOf('.') < line.indexOf('-'))
-                    code = line.substring(line.indexOf('.'));
-                else
-                    code = line.substring(line.indexOf('-'));
-                morseCode.put(line.charAt(0), code);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                bufferedReader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public static HashMap<Character, String> getMorseCode() {
+        HashMap<Character, String> morseCode = new HashMap<>();
+        InputStream inStream = MorseCode.class.getResourceAsStream(fileToRead);
+        if (inStream == null) {
+            System.err.println("Cannot open an alphabet file with name " + fileToRead);
+            return null;
         }
-    }
-
-    public TreeMap<Character, String> getMorseCode(){
+        Scanner scanner = new Scanner(new BufferedInputStream(inStream));
+        String[] line;
+        while(scanner.hasNextLine()){
+            line = scanner.nextLine().split(" ");
+            morseCode.put(line[0].charAt(0), line[1]);
+        }
         return morseCode;
     }
 }
