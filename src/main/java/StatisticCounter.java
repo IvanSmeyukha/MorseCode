@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Map;
 
 public class StatisticCounter {
     private final HashMap<Character, Integer> stat = new HashMap<>();
@@ -19,7 +18,7 @@ public class StatisticCounter {
     @Override
     public String toString(){
         StringBuilder str = new StringBuilder();
-        for(Map.Entry entry : stat.entrySet())
+        for(var entry : stat.entrySet())
             str.append("'").append(entry.getKey()).append("'").append(" = ").append(entry.getValue()).append('\n');
         return str.toString();
     }

@@ -24,14 +24,6 @@ public class Utils {
         } catch (IOException e) {
             System.err.println("Reading file error: " + e.getMessage());
         }
-//        try {
-//            Scanner scanner = new Scanner(new BufferedReader(new InputStreamReader(new FileInputStream(fileForOpen))));
-//            while (scanner.hasNextLine()) {
-//                text.append(scanner.nextLine());
-//            }
-//        }catch (IOException e) {
-//            System.err.println("Reading file error: " + e.getMessage());
-//        }
         return text.toString();
     }
 }

@@ -1,13 +1,13 @@
 import java.io.*;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class MorseCode {
-
     static String fileToRead = "morseCode.csv";
 
-    public static HashMap<Character, String> getMorseCode() {
-        HashMap<Character, String> morseCode = new HashMap<>();
+    public static Map<Character, String> getMorseCode() {
+        Map<Character, String> morseCode = new HashMap<>();
         InputStream inStream = MorseCode.class.getResourceAsStream(fileToRead);
         if (inStream == null) {
             System.err.println("Cannot open an alphabet file with name " + fileToRead);

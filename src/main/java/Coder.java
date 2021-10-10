@@ -4,7 +4,7 @@ import java.util.Map;
 public class Coder {
 
     public static void code(String textForCoding, String fileName) {
-        HashMap<Character, String> morseCode = MorseCode.getMorseCode();
+        Map<Character, String> morseCode = MorseCode.getMorseCode();
         StringBuilder result = new StringBuilder();
         StatisticCounter statistic = new StatisticCounter();
         char symbol;
@@ -27,11 +27,11 @@ public class Coder {
 
     public static void decode(String textForDecoding, String fileName) {
         StatisticCounter statistic = new StatisticCounter();
-        HashMap<Character, String> morseCode = MorseCode.getMorseCode();
+        Map<Character, String> morseCode = MorseCode.getMorseCode();
         StringBuilder result = new StringBuilder();
         String[] text = textForDecoding.replaceAll("   ", " * ").replaceAll("\n", " n ").replaceAll("\r", " r ").split(" ");
         for (String symbol : text) {
-            for (Map.Entry entry : morseCode.entrySet()) {
+            for (var entry : morseCode.entrySet()) {
                 if (symbol.equals("*")) {
                     result.append(" ");
                     break;
